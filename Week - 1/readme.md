@@ -26,7 +26,7 @@
 
 ---
 
-## **Practical Tasks (No Code)**
+## **Practical Tasks (With Code)**
 
 * Load dataset in **Pandas**
 * Inspect rows, columns, types, missing values
