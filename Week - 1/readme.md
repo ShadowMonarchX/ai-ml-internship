@@ -42,3 +42,23 @@
 [View Notebook](https://github.com/ShadowMonarchX/ai-ml-internship/blob/main/Week%20-%201/Data%20Cleaning%20%26%20Preprocessing.ipynb)
 
 ---
+
+## Day 2 — Data Cleaning & Preprocessing
+
+### Theory  
+Raw data usually contains issues. Preprocessing makes it ready for modeling.  
+
+**Key steps:**  
+- Handle missing values  
+- Remove duplicates  
+- Fix or remove outliers  
+ 
+
+---
+
+### Task for Day 2  
+1. Handle missing values in your dataset.  
+2. Remove duplicate records if any.  
+3. Identify and fix or remove outliers (as appropriate).  
+
+> 📌 After completing this, your dataset should be much cleaner and more reliable — ready for further preprocessing and modeling.  
