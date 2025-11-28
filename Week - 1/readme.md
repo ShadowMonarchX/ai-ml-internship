@@ -14,7 +14,6 @@
 * **Missing Values:** Empty or `NaN`
 * **Real-World Problem:** Understand purpose & business use-case
 
----
 
 ## **Importance**
 
@@ -23,7 +22,7 @@
 * Prevent overfitting / underfitting
 * Improve accuracy
 
----
+
 
 ## **Practical Tasks (With Code)**
 
@@ -33,7 +32,6 @@
 * Visualize prep/cook times and state vs sweets (**Matplotlib**)
 * Detect outliers (IQR method)
 
----
 
 ## **File**
 
@@ -53,11 +51,24 @@ Raw data usually contains issues. Preprocessing makes it ready for modeling.
 - Fix or remove outliers  
  
 
----
 
 ### Task for Day 2  
 1. Handle missing values in your dataset.  
 2. Remove duplicate records if any.  
 3. Identify and fix or remove outliers (as appropriate).  
 
-> 📌 After completing this, your dataset should be much cleaner and more reliable — ready for further preprocessing and modeling.  
+---
+
+## Day 3 — Missing Values & Data Correction
+
+### Theory
+Real datasets contain NA, blank, or incorrect values. Before modeling, data must be complete and consistent.  
+Day 3 focuses on: detecting missing values, filling them correctly, fixing wrong data, checking that no NA remains, and visualizing the cleaned dataset.  
+(Later steps: encode categorical data, normalize/scale, train–validation–test split.)
+
+### Tasks
+1. Detect all NA / blank / null values.  
+2. Fill missing values (numerical → mean/median, categorical → mode).  
+3. Correct wrong or inconsistent values.  
+4. Verify dataset is fully clean (no NA, no blanks, correct data types).  
+5. Visualize cleaned data (histogram, box plot, count plot).
