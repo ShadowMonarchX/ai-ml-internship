@@ -62,8 +62,7 @@ Raw data usually contains issues. Preprocessing makes it ready for modeling.
 ## Day 3 — Missing Values & Data Correction
 
 ### Theory
-Real datasets contain NA, blank, or incorrect values. Before modeling, data must be complete and consistent.  
-Day 3 focuses on: detecting missing values, filling them correctly, fixing wrong data, checking that no NA remains, and visualizing the cleaned dataset.  
+Real datasets contain NA, blank, or incorrect values. Before modeling, data must be complete and consistent.   
 (Later steps: encode categorical data, normalize/scale, train–validation–test split.)
 
 ### Tasks
