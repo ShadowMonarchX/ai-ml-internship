@@ -1,7 +1,6 @@
-# **📅 Day 1 – Understanding Data (AI/ML Internship)**
+# **📅 Week 1 – Understanding Data (AI/ML Internship)**
 
-## **Topic:** Introduction to Data & Dataset Understanding
-
+## Day 1 Understanding Data
 **Dataset:** Structured data for ML — rows = samples, columns = features.
 
 ---
