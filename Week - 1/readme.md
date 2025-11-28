@@ -39,6 +39,6 @@
 ## **File**
 
 📄 **Data Cleaning & Preprocessing.ipynb.ipynb**
-[View Notebook](https://github.com/ShadowMonarchX/ai-ml-internship/blob/main/Week%20-%201/Data Cleaning & Preprocessing.ipynb)
+[View Notebook](https://github.com/ShadowMonarchX/ai-ml-internship/blob/main/Week%20-%201/Data%20Cleaning%20%26%20Preprocessing.ipynb)
 
 ---
