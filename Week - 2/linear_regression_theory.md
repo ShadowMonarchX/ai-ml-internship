@@ -3,7 +3,6 @@
 
 # **📘 Linear Regression — Full Theoretical + Mathematical Notes**
 
----
 
 # **1️⃣ What is Linear Regression?**
 
