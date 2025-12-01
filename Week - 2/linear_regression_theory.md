@@ -1,104 +1,286 @@
 
-# ✅ **Data Preprocessing Tasks for Your CSV (`indian_food(in).csv`)**
+---
 
-Below are the tasks you should perform step-by-step.
+# **📘 Linear Regression — Full Theoretical + Mathematical Notes**
 
 ---
 
-## **1. Fix or Remove Outliers**
+# **1️⃣ What is Linear Regression?**
 
-### **Tasks**
+Linear Regression is a **supervised learning algorithm** used to model the relationship between:
 
-* Identify numerical columns (example: cooking time, ingredients count, rating, calories if present).
-* Plot/inspect values that are unusually high or low.
-* Check if the extreme values are:
+* **Independent variables (features)** → ( X )
+* **Dependent variable (target)** → ( y )
 
-  * **Valid** (e.g., a dish actually takes 240 minutes to cook) → keep.
-  * **Invalid** (e.g., cooking time = 0, or 9999 minutes) → fix or remove the row.
-
-### **How to fix**
-
-* Replace invalid values with:
-
-  * The median of the column
-  * Or remove the row if it makes no sense
+Goal:
+👉 Find a **best-fit straight line** that predicts ( y ) from ( X ).
 
 ---
 
-## **2. Encode Categorical Data**
+# **2️⃣ Types of Linear Regression**
 
-Your dataset likely includes columns like:
+### **1. Simple Linear Regression**
 
-* Cuisine
-* Diet (Veg/Non-Veg)
-* Course (Snack, Dessert, Main Course)
-* Region/State
-* Name (not needed for encoding)
+* One feature
+* Model:
+          y=β0​+β1​x+ε
 
-### **Tasks**
+### **2. Multiple Linear Regression**
 
-* Decide which encoding to apply:
+* Multiple features
+* Model:
+          y=β0​+β1​x1​+β2​x2​+⋯+βn​xn​+ε
+### **3. Polynomial Regression**
 
-  * **One-Hot Encoding** → for columns with few categories (e.g., Diet).
-  * **Label Encoding** → for large category columns (e.g., Cuisine, Region).
-* Drop irrelevant columns (e.g., description text) if they cannot be encoded.
-
----
-
-## **3. Normalize / Scale Numerical Features**
-
-You must scale numerical columns so models work better.
-
-### **Tasks**
-
-* Identify numerical columns:
-
-  * Cooking time
-  * Prep time
-  * Total time
-  * Rating
-  * Number of ingredients
-* Choose scaling method:
-
-  * **StandardScaler (Z-score)** → values become mean=0, std=1
-  * **MinMaxScaler (0–1 range)** → values scaled between 0 and 1
-* Apply scaling **after** splitting the data.
+* Non-linear relation handled with polynomial features
+* Still linear in coefficients.
 
 ---
 
-## **4. Split the Dataset**
+# **3️⃣ Assumptions of Linear Regression (Very Important)**
 
-### **Tasks**
+To get reliable results, Linear Regression assumes:
 
-Split into:
+1. **Linearity**
+   Relationship between features and output is linear.
 
-* **70% Train**
-* **15% Validation**
-* **15% Test**
+2. **Independence**
+   Observations are independent.
 
-### **What each set is used for**
+3. **Homoscedasticity**
+   Equal variance of errors.
 
-* **Train:** Train the ML model
-* **Validation:** Tune hyperparameters, choose best model
-* **Test:** Final accuracy check
+4. **Normality of Errors**
+   Residuals ~ Normal distribution.
 
-### **Important Rule**
-
-👉 **Never scale before splitting**
-Fit scalers only on **train**, then apply to validation & test.
+5. **No Multicollinearity**
+   Features should not be highly correlated.
 
 ---
 
-# ⭐ **Why This Matters**
+# **4️⃣ Mathematical Formulation**
 
-* Data preprocessing contributes to nearly **70% of model accuracy**.
-* Clean, well-processed data → stable, generalizable models.
-* Models struggle with:
+### **Model Equation (Vector Form)**
 
-  * Outliers
-  * Unscaled numerical data
-  * Categorical values in raw text
+For multiple regression:
 
-By completing these tasks correctly, your dataset becomes ML-ready.
+          y=Xβ+ε
+
+Where:
+
+* ( X ) → matrix of features
+* ( \beta ) → coefficients
+* ( y ) → target
+* ( \varepsilon ) → error term
 
 ---
+
+# **5️⃣ Cost Function – Mean Squared Error (MSE)**
+
+Linear Regression minimizes the **sum of squared errors**.
+
+          J(β)=2m1​i=1∑m​(yi​−y^​i​)2
+
+Where:
+
+* 𝑚 = number of samples
+* y_i  = actual value
+* ( \hat{y}_i = X\beta ) = predicted value
+
+Goal:
+👉 **Minimize** ( J(\beta) )
+
+---
+
+# **6️⃣ Finding Best Coefficients (β)**
+
+### **Method 1: Normal Equation**
+
+Closed-form solution (no gradient descent needed):
+
+          β=(XTX)−1XTy
+
+Works well when:
+
+* small dataset
+* features < 10,000
+
+Fails when:
+
+* matrix becomes non-invertible
+* large dataset → slow
+
+---
+
+### **Method 2: Gradient Descent**
+
+Iterative optimization:
+
+          β:=β−α∂β∂J(β)​
+
+Where:
+
+* ( \alpha ) = learning rate
+* Compute gradient:
+
+          [
+          \frac{\partial J}{\partial\beta}=-\frac{1}{m}X^T(y-X\beta)
+          ]
+
+Update rule:
+
+[
+\beta := \beta + \alpha \frac{1}{m}X^T(y-X\beta)
+]
+
+Repeat until convergence.
+
+---
+
+# **7️⃣ Evaluation Metrics**
+
+### **1. R² Score**
+
+Measures how much variance in y is explained.
+
+[
+R^2 = 1 - \frac{SS_{res}}{SS_{tot}}
+]
+
+Where:
+
+* ( SS_{res} = \sum (y - \hat{y})^2 )
+* ( SS_{tot} = \sum (y - \bar{y})^2 )
+
+---
+
+### **2. Adjusted R²**
+
+Penalizes extra features.
+
+[
+R^2_{adj} = 1 - \frac{(1-R^2)(n-1)}{n-k-1}
+]
+
+Where:
+
+* ( n ) → samples
+* ( k ) → features
+
+---
+
+### **3. RMSE: Root Mean Squared Error**
+
+[
+RMSE = \sqrt{\frac{1}{m}\sum (y-\hat{y})^2}
+]
+
+---
+
+# **8️⃣ Gradient Descent Variants**
+
+1. **Batch GD** – uses whole data
+2. **Stochastic GD** – uses one example
+3. **Mini-Batch GD** – uses small batches (most used)
+
+---
+
+# **9️⃣ Problems with Linear Regression**
+
+1. **Outliers influence model heavily**
+2. **Multicollinearity → unstable coefficients**
+3. **Underfitting if relationship is non-linear**
+
+---
+
+# **🔟 Regularization in Linear Regression**
+
+Used to reduce overfitting by penalizing large coefficients.
+
+### **1. Ridge Regression (L2)**
+
+          J(β)=MSE+λ∑βi2​
+
+### **2. Lasso Regression (L1)**
+
+          J(β)=MSE+λ∑∣βi​∣
+
+### **3. Elastic Net**
+
+Combination of L1 + L2
+
+---
+
+# **1️⃣1️⃣ Geometric Interpretation**
+
+Linear Regression finds a **hyperplane** in n-dimensional space.
+
+Example:
+
+* 1 feature → line
+* 2 features → plane
+* n features → n-dimensional hyperplane
+
+Goal: minimize perpendicular distance between points and that hyperplane.
+
+---
+
+# **1️⃣2️⃣ Statistical Interpretation**
+
+[
+\beta_1 = \frac{Cov(X, Y)}{Var(X)}
+]
+
+Intercept:
+[
+\beta_0 = \bar{y} - \beta_1\bar{x}
+]
+
+This shows:
+
+* slope depends on covariance
+* intercept shifts line to match mean
+
+---
+
+# **1️⃣3️⃣ Error / Residual Analysis**
+
+Residual =
+
+          ei​=yi​−y^​i​
+
+Good model:
+
+* residuals randomly distributed
+* no pattern
+* constant variance
+
+---
+
+# **1️⃣4️⃣ When to Use Linear Regression**
+
+Use when:
+✓ Relationship approx linear
+✓ Data clean, no extreme outliers
+✓ Interpretability needed
+
+Don't use when:
+✗ Complex non-linear relations
+✗ High multicollinearity
+✗ Many categorical variables without encoding
+
+---
+
+# **1️⃣5️⃣ Summary for Notes**
+
+* Linear Regression predicts output using straight line.
+* Uses MSE cost function.
+* Coefficients: Normal Equation / Gradient Descent
+* Evaluation: R², RMSE
+* Assumptions must be satisfied
+* Regularization prevents overfitting
+* Easy to interpret, fast, widely used
+
+---
+
+
