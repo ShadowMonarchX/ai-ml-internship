@@ -1,7 +1,7 @@
 
 ---
 
-# **📅 Week 1 – Understanding Data **
+# 📅 Week 1 – Understanding Data 
 
 ## **Understanding Data**
 
