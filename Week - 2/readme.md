@@ -108,6 +108,7 @@ By completing these tasks correctly, your dataset becomes ML-ready.
 ---
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 # ✅ **BIG Linear Regression Project Plan (Crunchbase Startup Dataset)**
 
 ### **Target: Predict Total Funding (USD)**
@@ -517,6 +518,8 @@ Tasks:
 
 
 =======
+=======
+>>>>>>> 36366a1d9d5a6a776b2a71accae67d575750715a
 # 📊 **Linear Regression Project Plan – 50_Startups Dataset**
 
 **Dataset Columns:**
@@ -673,4 +676,7 @@ Tasks:
 
 ---
 
+<<<<<<< HEAD
 >>>>>>> 36366a1 (week - 2 Day 2)
+=======
+>>>>>>> 36366a1d9d5a6a776b2a71accae67d575750715a
