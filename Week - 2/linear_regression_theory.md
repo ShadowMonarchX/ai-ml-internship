@@ -1,7 +1,8 @@
 # 📘 Linear Regression — Full Theoretical + Mathematical Notes
 
----
+## 1️⃣ What is Linear Regression?
 
+<<<<<<< HEAD
 ## Overview
 
 This repository contains final study notes for **Linear Regression** (deep theoretical explanation with maths) and a ready-to-copy Python implementation you can paste into your Git repo. The README is formatted for easy reading and direct use as study material.
@@ -29,21 +30,30 @@ This repository contains final study notes for **Linear Regression** (deep theor
 
 ## 1. What is Linear Regression?
 
+=======
+>>>>>>> 3646266 (Update linear_regression_theory.md)
 Linear Regression is a **supervised learning algorithm** used to model the relationship between:
 
 * **Independent variables (features)** → $X$
 * **Dependent variable (target)** → $y$
+<<<<<<< HEAD
 
 **Goal:** Find a **best-fit straight line (or hyperplane)** that predicts $y$ from $X$.
 
 
 [Image of Simple Linear Regression best-fit line plotted on scatter data]
 
+=======
+
+**Goal:**
+👉 Find a **best-fit straight line** that predicts $y$ from $X$.
+>>>>>>> 3646266 (Update linear_regression_theory.md)
 
 ---
 
-## 2. Types of Linear Regression
+## 2️⃣ Types of Linear Regression
 
+<<<<<<< HEAD
 ### 2.1 Simple Linear Regression
 * One feature:
 $$\text{y} = \beta_0 + \beta_1 x + \varepsilon$$
@@ -79,19 +89,76 @@ $$\text{y} = X\beta + \varepsilon$$
 * $\beta$ — coefficient vector
 * $y$ — target vector
 * $\varepsilon$ — error term (noise)
+=======
+### **1. Simple Linear Regression**
+* One feature
+* **Model:**
+$$y = \beta_0 + \beta_1 x + \varepsilon$$
+
+### **2. Multiple Linear Regression**
+* Multiple features
+* **Model:**
+$$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \dots + \beta_n x_n + \varepsilon$$
+
+### **3. Polynomial Regression**
+* Non-linear relation handled with polynomial features
+* Still linear in coefficients.
 
 ---
 
-## 5. Cost Function — Mean Squared Error (MSE)
+## 3️⃣ Assumptions of Linear Regression (Very Important)
 
+To get reliable results, Linear Regression assumes:
+
+1. **Linearity:** Relationship between features and output is linear.
+2. **Independence:** Observations are independent.
+3. **Homoscedasticity:** Equal variance of errors.
+4. **Normality of Errors:** Residuals ~ Normal distribution.
+5. **No Multicollinearity:** Features should not be highly correlated.
+
+---
+
+## 4️⃣ Mathematical Formulation
+
+### **Model Equation (Vector Form)**
+For multiple regression:
+
+$$y = X\beta + \varepsilon$$
+
+**Where:**
+* $X$ → matrix of features
+* $\beta$ → coefficients
+* $y$ → target
+* $\varepsilon$ → error term
+>>>>>>> 3646266 (Update linear_regression_theory.md)
+
+---
+
+## 5️⃣ Cost Function – Mean Squared Error (MSE)
+
+<<<<<<< HEAD
 $$\text{J}(\beta) = \frac{1}{2m} \sum_{i=1}^{m} (y_i - \hat{y}_i)^2$$
 
 Where $\hat{y} = X\beta$. The goal is to **minimize** $J(\beta)$.
+=======
+Linear Regression minimizes the **sum of squared errors**.
+
+$$J(\beta) = \frac{1}{2m}\sum_{i=1}^{m}(y_i - \hat{y}_i)^2$$
+
+**Where:**
+* $m$ = number of samples
+* $y_i$ = actual value
+* $\hat{y}_i = X\beta$ = predicted value
+
+**Goal:**
+👉 **Minimize** $J(\beta)$
+>>>>>>> 3646266 (Update linear_regression_theory.md)
 
 ---
 
-## 6. Finding Best Coefficients
+## 6️⃣ Finding Best Coefficients ($\beta$)
 
+<<<<<<< HEAD
 ### 6.1 Normal Equation (Closed-form)
 $$\beta = (X^T X)^{-1} X^T y$$
 
@@ -195,3 +262,149 @@ $$\beta_1 = \frac{Cov(X,Y)}{Var(X)}, \qquad \beta_0 = \bar{y} - \beta_1 \bar{x}$
 * **Validate assumptions** with residual analysis.
 
 ---
+=======
+### **Method 1: Normal Equation**
+Closed-form solution (no gradient descent needed):
+
+$$\beta = (X^TX)^{-1}X^Ty$$
+
+* **Works well when:** small dataset, features < 10,000
+* **Fails when:** matrix becomes non-invertible, large dataset (slow)
+
+### **Method 2: Gradient Descent**
+Iterative optimization:
+
+$$\beta := \beta - \alpha \frac{\partial J(\beta)}{\partial \beta}$$
+
+**Where:**
+* $\alpha$ = learning rate
+
+**Compute gradient:**
+$$\frac{\partial J}{\partial\beta} = -\frac{1}{m}X^T(y-X\beta)$$
+
+**Update rule:**
+$$\beta := \beta + \alpha \frac{1}{m}X^T(y-X\beta)$$
+
+Repeat until convergence.
+
+---
+
+## 7️⃣ Evaluation Metrics
+
+### **1. R² Score**
+Measures how much variance in $y$ is explained.
+
+$$R^2 = 1 - \frac{SS_{res}}{SS_{tot}}$$
+
+**Where:**
+* $SS_{res} = \sum (y - \hat{y})^2$
+* $SS_{tot} = \sum (y - \bar{y})^2$
+
+### **2. Adjusted R²**
+Penalizes extra features.
+
+$$R^2_{adj} = 1 - \frac{(1-R^2)(n-1)}{n-k-1}$$
+
+**Where:**
+* $n$ → samples
+* $k$ → features
+
+### **3. RMSE: Root Mean Squared Error**
+
+$$RMSE = \sqrt{\frac{1}{m}\sum (y-\hat{y})^2}$$
+
+---
+
+## 8️⃣ Gradient Descent Variants
+
+1. **Batch GD** – uses whole data
+2. **Stochastic GD** – uses one example
+3. **Mini-Batch GD** – uses small batches (most used)
+
+---
+
+## 9️⃣ Problems with Linear Regression
+
+1. **Outliers influence model heavily**
+2. **Multicollinearity → unstable coefficients**
+3. **Underfitting if relationship is non-linear**
+
+---
+
+## 🔟 Regularization in Linear Regression
+
+Used to reduce overfitting by penalizing large coefficients.
+
+### **1. Ridge Regression (L2)**
+$$J(\beta) = MSE + \lambda \sum\beta_i^2$$
+
+### **2. Lasso Regression (L1)**
+$$J(\beta) = MSE + \lambda \sum|\beta_i|$$
+
+### **3. Elastic Net**
+Combination of L1 + L2
+
+---
+
+## 1️⃣1️⃣ Geometric Interpretation
+
+Linear Regression finds a **hyperplane** in n-dimensional space.
+
+**Example:**
+* 1 feature → line
+* 2 features → plane
+* n features → n-dimensional hyperplane
+
+**Goal:** minimize perpendicular distance between points and that hyperplane.
+
+---
+
+## 1️⃣2️⃣ Statistical Interpretation
+
+$$\beta_1 = \frac{Cov(X, Y)}{Var(X)}$$
+
+**Intercept:**
+$$\beta_0 = \bar{y} - \beta_1\bar{x}$$
+
+**This shows:**
+* slope depends on covariance
+* intercept shifts line to match mean
+
+---
+
+## 1️⃣3️⃣ Error / Residual Analysis
+
+**Residual:**
+$$e_i = y_i - \hat{y}_i$$
+
+**Good model:**
+* residuals randomly distributed
+* no pattern
+* constant variance
+
+---
+
+## 1️⃣4️⃣ When to Use Linear Regression
+
+**Use when:**
+✓ Relationship approx linear
+✓ Data clean, no extreme outliers
+✓ Interpretability needed
+
+**Don't use when:**
+✗ Complex non-linear relations
+✗ High multicollinearity
+✗ Many categorical variables without encoding
+
+---
+
+## 1️⃣5️⃣ Summary for Notes
+
+* Linear Regression predicts output using straight line.
+* Uses MSE cost function.
+* Coefficients: Normal Equation / Gradient Descent.
+* Evaluation: R², RMSE.
+* Assumptions must be satisfied.
+* Regularization prevents overfitting.
+* Easy to interpret, fast, widely used.
+>>>>>>> 3646266 (Update linear_regression_theory.md)
