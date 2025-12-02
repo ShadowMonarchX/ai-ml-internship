@@ -103,8 +103,7 @@ By completing these tasks correctly, your dataset becomes ML-ready.
 
 ---
 ---
-# Day 
-
+# Day - 2
 ---
 
 # 📊 **Linear Regression Project Plan – 50_Startups Dataset**
