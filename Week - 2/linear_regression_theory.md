@@ -30,6 +30,7 @@ This repository contains final study notes for **Linear Regression** (deep theor
 ## 1. What is Linear Regression?
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ## Overview
 
 This repository contains final study notes for **Linear Regression** (deep theoretical explanation with maths) and a ready-to-copy Python implementation you can paste into your Git repo. The README is formatted for easy reading and direct use as study material.
@@ -59,10 +60,13 @@ This repository contains final study notes for **Linear Regression** (deep theor
 
 =======
 >>>>>>> 3646266 (Update linear_regression_theory.md)
+=======
+>>>>>>> 36366a1d9d5a6a776b2a71accae67d575750715a
 Linear Regression is a **supervised learning algorithm** used to model the relationship between:
 
 * **Independent variables (features)** → $X$
 * **Dependent variable (target)** → $y$
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 **Goal:** Find a **best-fit straight line (or hyperplane)** that predicts $y$ from $X$.
@@ -83,6 +87,14 @@ Linear Regression is a **supervised learning algorithm** used to model the relat
 [Image of Simple Linear Regression best-fit line plotted on scatter data]
 
 >>>>>>> 0c64ee1 (Update linear_regression_theory.md)
+=======
+
+**Goal:** Find a **best-fit straight line (or hyperplane)** that predicts $y$ from $X$.
+
+
+[Image of Simple Linear Regression best-fit line plotted on scatter data]
+
+>>>>>>> 36366a1d9d5a6a776b2a71accae67d575750715a
 
 ---
 
@@ -125,6 +137,7 @@ $$\text{y} = X\beta + \varepsilon$$
 * $\beta$ — coefficient vector
 * $y$ — target vector
 * $\varepsilon$ — error term (noise)
+<<<<<<< HEAD
 =======
 ### **1. Simple Linear Regression**
 * One feature
@@ -175,11 +188,14 @@ $$\text{y} = X\beta + \varepsilon$$
 * $y$ — target vector
 * $\varepsilon$ — error term (noise)
 >>>>>>> 0c64ee1 (Update linear_regression_theory.md)
+=======
+>>>>>>> 36366a1d9d5a6a776b2a71accae67d575750715a
 
 ---
 
 ## 5. Cost Function — Mean Squared Error (MSE)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 $$\text{J}(\beta) = \frac{1}{2m} \sum_{i=1}^{m} (y_i - \hat{y}_i)^2$$
@@ -203,6 +219,11 @@ $$\text{J}(\beta) = \frac{1}{2m} \sum_{i=1}^{m} (y_i - \hat{y}_i)^2$$
 
 Where $\hat{y} = X\beta$. The goal is to **minimize** $J(\beta)$.
 >>>>>>> 0c64ee1 (Update linear_regression_theory.md)
+=======
+$$\text{J}(\beta) = \frac{1}{2m} \sum_{i=1}^{m} (y_i - \hat{y}_i)^2$$
+
+Where $\hat{y} = X\beta$. The goal is to **minimize** $J(\beta)$.
+>>>>>>> 36366a1d9d5a6a776b2a71accae67d575750715a
 
 ---
 
@@ -305,6 +326,7 @@ $$\beta_1 = \frac{Cov(X,Y)}{Var(X)}, \qquad \beta_0 = \bar{y} - \beta_1 \bar{x}$
 ---
 
 ## 14. Summary (Revision)
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 * Linear Regression predicts **continuous** outcomes.
@@ -423,6 +445,16 @@ $$\beta_1 = \frac{Cov(X,Y)}{Var(X)}, \qquad \beta_0 = \bar{y} - \beta_1 \bar{x}$
 ---
 
 ## 14. Summary (Revision)
+=======
+
+* Linear Regression predicts **continuous** outcomes.
+* Minimizes **MSE** via OLS.
+* Solve via **Normal Equation** or **Gradient Descent**.
+* **Regularize** (Ridge/Lasso) to combat overfitting.
+* **Validate assumptions** with residual analysis.
+=======
+>>>>>>> e1f0279 (week - 2 Day 2)
+>>>>>>> 36366a1d9d5a6a776b2a71accae67d575750715a
 
 * Linear Regression predicts **continuous** outcomes.
 * Minimizes **MSE** via OLS.
@@ -430,6 +462,7 @@ $$\beta_1 = \frac{Cov(X,Y)}{Var(X)}, \qquad \beta_0 = \bar{y} - \beta_1 \bar{x}$
 * **Regularize** (Ridge/Lasso) to combat overfitting.
 * **Validate assumptions** with residual analysis.
 
+<<<<<<< HEAD
 ---
 <<<<<<< HEAD
 
@@ -448,3 +481,6 @@ $$\beta_1 = \frac{Cov(X,Y)}{Var(X)}, \qquad \beta_0 = \bar{y} - \beta_1 \bar{x}$
 =======
 ---
 >>>>>>> 36366a1 (week - 2 Day 2)
+=======
+---
+>>>>>>> 36366a1d9d5a6a776b2a71accae67d575750715a
