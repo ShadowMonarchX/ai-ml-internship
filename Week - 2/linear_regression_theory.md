@@ -187,6 +187,15 @@ $$\beta_1 = \frac{Cov(X,Y)}{Var(X)}, \qquad \beta_0 = \bar{y} - \beta_1 \bar{x}$
 ---
 
 ## 14. Summary (Revision)
+<<<<<<< HEAD
+
+* Linear Regression predicts **continuous** outcomes.
+* Minimizes **MSE** via OLS.
+* Solve via **Normal Equation** or **Gradient Descent**.
+* **Regularize** (Ridge/Lasso) to combat overfitting.
+* **Validate assumptions** with residual analysis.
+=======
+>>>>>>> e1f0279 (week - 2 Day 2)
 
 * Linear Regression predicts **continuous** outcomes.
 * Minimizes **MSE** via OLS.
