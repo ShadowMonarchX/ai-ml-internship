@@ -261,4 +261,25 @@ By completing these tasks correctly, your dataset becomes ML-ready.
     * Next Steps (apply to bigger datasets)
 
 ---
+Here is a **short and clean version** of the tasks — not long, not too short — just the perfect middle 👇
+
+---
+# Day - 3
+# ✅ **Task List (Logistic Regression Practical)**
+
+1. **Load the Iris dataset** and explore basic info.
+2. **Filter two classes** (remove setosa) for binary classification.
+3. **Encode target labels** (versicolor = 0, virginica = 1).
+4. **Split data** into train and test sets.
+5. **Build preprocessing pipeline** (scaling + encoding).
+6. **Create Logistic Regression model** inside a pipeline.
+7. **Tune hyperparameters** using GridSearchCV.
+8. **Train the model** on training data.
+9. **Predict** on test data.
+10. **Evaluate performance** (accuracy + classification report).
+11. **Visualize dataset** using seaborn pairplot.
+
+---
+
+
 
