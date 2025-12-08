@@ -15,6 +15,7 @@ An **Artificial Neural Network (ANN)**, or simply a Neural Network, is a computa
 3. [The Core Function: Activation Functions](#3-the-core-function-activation-functions)
 4. [Training the Network: The Loss Function](#4-training-the-network-the-loss-function)
 5. [Learning Mechanism: Gradient Descent & Backpropagation](#5-learning-mechanism-gradient-descent--backpropagation)
+6. [ANN Training Workflow](#6-ann-training-workflow)
 
 ---
 
@@ -38,8 +39,6 @@ $$Z = \mathbf{w}^T \mathbf{x} + b$$
 The weighted sum $Z$ is then passed through an **Activation Function** ($g$) which introduces non-linearity, producing the neuron's output ($A$):
 
 $$A = g(Z)$$
-
-
 
 ---
 
@@ -154,9 +153,58 @@ $$\mathbf{b}^{[l]} = \mathbf{b}^{[l]} - \eta \frac{\partial \mathcal{L}}{\partia
 
 * $\eta$ is the **learning rate**, controlling the step size.
 
-#### Training Epoch
+---
 
-The full cycle for one pass of the training data (one **Epoch**) involves:
-1.  **Forwardpropagation:** Calculate prediction $\hat{y}$ and loss $\mathcal{L}$.
-2.  **Backpropagation:** Calculate gradients $\frac{\partial \mathcal{L}}{\partial \mathbf{W}}$ and $\frac{\partial \mathcal{L}}{\partial \mathbf{b}}$.
-3.  **Parameter Update:** Apply Gradient Descent to update $\mathbf{W}$ and $\mathbf{b}$.
+## 6.1 General ANN Training Workflow (Combined)
+
+```mermaid
+graph TD
+    A[Start: Initialize Weights W and b] --> B[Input Data X]
+    B --> C{Forwardpropagation Yhat}
+    C --> D[Compute Loss L of Yhat and Y]
+    D --> E{Backpropagation compute gradients}
+    E --> F[Update Parameters using Gradient Descent]
+    F --> G{End of Epoch?}
+    G -- No --> B
+    G -- Yes --> H[Stop Training]
+```
+
+---
+
+## 6.2 Forwardpropagation Workflow (Particular)
+
+```mermaid
+graph LR
+    A[Input Layer l=0: A0 equals X] --> B{Compute Z for Layer l}
+    B --> C{Activation Al}
+    C --> D[Output Al]
+    D -- Next Layer? --> B
+    D -- Last Layer --> E[Final Prediction Yhat]
+```
+
+---
+
+## 6.3 Backpropagation Workflow (Particular)
+
+```mermaid
+graph TD
+    A[Start: Loss at Output Layer L] --> B{Compute delta at L}
+    B --> C{Compute Gradients for Weights and Biases at L}
+    C --> D{Compute delta for Previous Layer}
+    D --> E{Compute Gradients for Weights and Biases at Previous Layer}
+    E -- If more layers --> D
+    E -- First Layer Done --> F[Finish Backpropagation]
+```
+
+---
+
+## 6.4 Parameter Update Workflow (Particular)
+
+```mermaid
+graph LR
+    A[Receive Gradients] --> B{Update Weights W}
+    B --> C{Update Biases b}
+    C --> D[Parameters Updated for Next Batch]
+```
+
+---
