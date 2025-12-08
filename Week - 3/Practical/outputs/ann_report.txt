@@ -1,0 +1,18 @@
+ANN Student Scores Training Report
+Features: ['StudyHours', 'Attendance', 'Motivation', 'ExamScore']
+Target: FinalGrade
+Model: Input 4 -> Hidden 5 (ReLU) -> Output 1
+Epochs: 100, Batch size: 32, LR: 0.01
+Final Train MSE (scaled): 0.049626
+
+Sample predictions vs actuals (first 10 test samples):
+Predicted: 2.214 	 Actual: 2.000
+Predicted: 2.376 	 Actual: 2.000
+Predicted: 2.213 	 Actual: 2.000
+Predicted: 0.464 	 Actual: -0.000
+Predicted: 0.139 	 Actual: -0.000
+Predicted: 0.109 	 Actual: -0.000
+Predicted: 2.070 	 Actual: 2.000
+Predicted: 2.995 	 Actual: 3.000
+Predicted: 0.154 	 Actual: -0.000
+Predicted: 0.574 	 Actual: 1.000
