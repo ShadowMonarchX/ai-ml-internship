@@ -1,4 +1,4 @@
-# 📘 Week 2 – AI/ML Internship (1 Dec – 5 Dec)
+# 📘 Week 2 – AI/ML Internship
 
 ![Status](https://img.shields.io/badge/Week%202-Completed-brightgreen)
 ![ML](https://img.shields.io/badge/Machine%20Learning-Core%20Algorithms-blue)
