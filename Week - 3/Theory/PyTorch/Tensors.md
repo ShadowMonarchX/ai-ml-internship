@@ -1,4 +1,4 @@
-# 💡 PyTorch Tensors: Theory, Utility, and Deep Learning Applications
+# 💡 PyTorch Tensors: Theory
 
 ---
 
