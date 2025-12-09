@@ -1,4 +1,4 @@
-# 📘 Backpropagation: Complete Beginner → Advanced Theory (Math + Diagrams)
+# 📘 Backpropagation: Complete Beginner
 
 A full guide covering all required foundational, intermediate, and advanced concepts of backpropagation in Deep Learning — including intuition, mathematics, calculus, matrix form, vectorized gradients, and full propagation rules for every layer.
 
