@@ -110,21 +110,26 @@ $$
 \mathbf{A}^{(l)} = f\left(\mathbf{W}^{(l)}\mathbf{A}^{(l-1)} + \mathbf{b}^{(l)}\right)
 $$
 
-### Deep Network Expression
+## Deep Network Expression
+This shows the full composition of functions from the input A^(0) to the final output ŷ.
 
-This shows the full composition of functions from the input $\mathbf{A}^{(0)}$ to the final output $\hat{y}$.
 $$
 \hat{y} =
-f_L\left(
-\mathbf{W}^{(L)} f_{L-1}\left(
-\mathbf{W}^{(L-1)} \dots f_1\left(
-\mathbf{W}^{(1)}\mathbf{A}^{(0)} + \mathbf{b}^{(1)}
-\right)
-\dots
-\right)
-+ \mathbf{b}^{(L)}
-\right)
+f_L\Big(
+    \mathbf{W}^{(L)}
+    \; f_{L-1}\big(
+        \mathbf{W}^{(L-1)} \dots
+        f_1(
+            \mathbf{W}^{(1)}\mathbf{A}^{(0)} + \mathbf{b}^{(1)}
+        )
+        \dots
+    \big)
+    + \mathbf{b}^{(L)}
+\Big)
 $$
+
+
+
 
 ---
 
