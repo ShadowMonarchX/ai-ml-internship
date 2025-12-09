@@ -152,33 +152,43 @@ Where $\odot$ is the Hadamard product (element-wise multiplication).
 
 -----
 
-# 6️⃣ Backprop Through Deep Networks (Vector Form)
+# 6️⃣ # 🔹 Backprop Through Deep Networks (Vector Form)
 
-Backpropagation involves iterating the layer update rules from the output layer ($L$) back to the first layer (1).
+Backpropagation iterates the layer update rules **from output layer L back to layer 1**.
 
-1.  **Output Error ($\mathbf{d\mathbf{Z}^{(L)}}$)**: Calculated directly from the loss function derivative and the final activation derivative.
 
-    $$
-    d\mathbf{Z}^{(L)} = \frac{\partial \mathcal{L}}{\partial \mathbf{A}^{(L)}} \odot f_L'(\mathbf{Z}^{(L)})
-    $$
+## 📐 Step 1 — Output Layer Error
 
-2.  **Parameter Gradients ($\mathbf{d\mathbf{W}^{(L)}, d\mathbf{b}^{(L)}}$)**: Computed using the local $d\mathbf{Z}^{(L)}$ and the cached $\mathbf{A}^{(L-1)}$ from the forward pass.
+Calculated from the **loss derivative** and the **activation derivative**:
 
-    $$
-    d\mathbf{W}^{(L)} = d\mathbf{Z}^{(L)}\mathbf{A}^{(L-1)T}
-    $$
+$$
+d\mathbf{Z}^{(L)} = \frac{\partial \mathcal{L}}{\partial \mathbf{A}^{(L)}} \odot f_L'(\mathbf{Z}^{(L)})
+$$
 
-    $$
-    d\mathbf{b}^{(L)} = \text{sum}(d\mathbf{Z}^{(L)})
-    $$
 
-3.  **Error Propagation ($\mathbf{d\mathbf{A}^{(L-1)}}$)**: The error signal is passed back to the previous layer.
+## 📐 Step 2 — Parameter Gradients
 
-    $$
-    d\mathbf{A}^{(L-1)} = \mathbf{W}^{(L)T} d\mathbf{Z}^{(L)}
-    $$
+Using the **cached activations** from forward pass:
 
-4.  **Repeat**: $d\mathbf{A}^{(L-1)}$ becomes the $d\mathbf{L}/\mathbf{d\mathbf{A}}$ term for layer $L-1$, and the process repeats for $L-1, L-2, \dots, 1$.
+$$
+d\mathbf{W}^{(L)} = d\mathbf{Z}^{(L)} \mathbf{A}^{(L-1)T}
+$$
+
+$$
+d\mathbf{b}^{(L)} = \text{sum}(d\mathbf{Z}^{(L)})
+$$
+
+
+## 📐 Step 3 — Error Propagation to Previous Layer
+
+The error signal propagates backward:
+
+$$
+d\mathbf{A}^{(L-1)} = \mathbf{W}^{(L)T} d\mathbf{Z}^{(L)}
+$$
+
+This becomes the **dL/dA term** for layer \(L-1\) and the process repeats **until layer 1**.
+
 
 -----
 
