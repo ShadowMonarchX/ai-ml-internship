@@ -132,10 +132,19 @@ $$
 
 ## Forward Pass as Function Composition
 
-The network is one large function:
+The network can be viewed as a single large function that maps input to output:
+
 $$
-\hat{y} = f_L(\mathbf{W}^{(L)} f_{L-1}(\dots f_1(\mathbf{W}^{(1)}\mathbf{A}^{(0)} + \mathbf{b}^{(1)})\dots ) + \mathbf{b}^{(L)})
+\hat{y} = f_L\Big(\mathbf{W}^{(L)} f_{L-1}\big(\dots f_1(\mathbf{W}^{(1)} \mathbf{A}^{(0)} + \mathbf{b}^{(1)}) \dots \big) + \mathbf{b}^{(L)}\Big)
 $$
+
+Where:
+
+- $\mathbf{A}^{(0)}$ is the input to the network.  
+- $\mathbf{W}^{(l)}$ and $\mathbf{b}^{(l)}$ are the weights and biases of layer $l$.  
+- $f_l$ is the activation function of layer $l$.  
+- $L$ is the total number of layers.  
+- $\hat{y}$ is the predicted output.
 
 ## Computation Graph View
 
