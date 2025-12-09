@@ -202,14 +202,15 @@ This flow illustrates the main loop of training driven by Autograd.
 
 ```mermaid
 flowchart TD
-    A[Input Tensors (requires_grad=True)] --> B{Forward Pass — Operations Recorded}
-    B --> C[Computational Graph (grad_fn links)]
-    C --> D[Loss Computed (Scalar)]
-    D --> E{Backward Pass — Chain Rule}
-    E --> F[Gradients Accumulated in .grad]
-    F --> G[Optimizer Updates Parameters]
-    G --> H[optimizer.zero_grad()]
+    A[Input Tensors requires_grad True] --> B[Forward Pass Ops Recorded]
+    B --> C[Computational Graph grad_fn Links]
+    C --> D[Loss Computed Scalar]
+    D --> E[Backward Pass Chain Rule]
+    E --> F[Gradients Stored in grad]
+    F --> G[Optimizer Updates Params]
+    G --> H[Optimizer Zero Grad]
     H --> A
+
 ```
 
 -----
