@@ -47,12 +47,13 @@ Where:
 
 ### Activation Functions
 
-| Activation  | Formula                               | Notes                     |
-| ----------- | ------------------------------------- | ------------------------- |
-| **ReLU**    | $ \max(0, x) $                        | Fast, default             |
-| **Sigmoid** | $ \frac{1}{1 + e^{-x}} $              | Binary classification     |
-| **Tanh**    | $ \frac{e^x - e^{-x}}{e^x + e^{-x}} $ | Zero-centered             |
-| **Softmax** | $ \frac{e^{z_i}}{\sum_j e^{z_j}} $    | Multi-class probabilities |
+| Activation  | Formula                                 | Notes                     |
+|-------------|-------------------------------------------|---------------------------|
+| **ReLU**    | `max(0, x)`                               | Fast, default choice      |
+| **Sigmoid** | `1 / (1 + exp(-x))`                       | Binary classification     |
+| **Tanh**    | `(exp(x) - exp(-x)) / (exp(x) + exp(-x))` | Zero-centered             |
+| **Softmax** | `exp(z_i) / sum_j exp(z_j)`               | Multi-class probabilities |
+ftmax** | $ \frac{e^{z_i}}{\sum_j e^{z_j}} $    | Multi-class probabilities |
 
 ---
 
