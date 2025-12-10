@@ -1,0 +1,192 @@
+digraph {
+	{
+		rank=same
+		input0_0 [label=B1N1 color=lightblue shape=circle]
+	}
+	{
+		rank=same
+		input1_0 [label=B2N1 color=lightblue shape=circle]
+	}
+	{
+		rank=same
+		input2_0 [label=B3N1 color=lightblue shape=circle]
+	}
+	{
+		rank=same
+		concat_0 [label=C1 color=orange shape=circle]
+		concat_1 [label=C2 color=orange shape=circle]
+		concat_2 [label=C3 color=orange shape=circle]
+	}
+	input0_0 -> concat_0
+	input1_0 -> concat_1
+	input2_0 -> concat_2
+	h0_0 [label=h0_0 color=green shape=circle]
+	h0_1 [label=h0_1 color=green shape=circle]
+	h0_2 [label=h0_2 color=green shape=circle]
+	h0_3 [label=h0_3 color=green shape=circle]
+	h0_4 [label=h0_4 color=green shape=circle]
+	h0_5 [label=h0_5 color=green shape=circle]
+	concat_0 -> h0_0
+	concat_0 -> h0_1
+	concat_0 -> h0_2
+	concat_0 -> h0_3
+	concat_0 -> h0_4
+	concat_0 -> h0_5
+	concat_1 -> h0_0
+	concat_1 -> h0_1
+	concat_1 -> h0_2
+	concat_1 -> h0_3
+	concat_1 -> h0_4
+	concat_1 -> h0_5
+	concat_2 -> h0_0
+	concat_2 -> h0_1
+	concat_2 -> h0_2
+	concat_2 -> h0_3
+	concat_2 -> h0_4
+	concat_2 -> h0_5
+	h1_0 [label=h1_0 color=green shape=circle]
+	h1_1 [label=h1_1 color=green shape=circle]
+	h1_2 [label=h1_2 color=green shape=circle]
+	h1_3 [label=h1_3 color=green shape=circle]
+	h1_4 [label=h1_4 color=green shape=circle]
+	h0_0 -> h1_0
+	h0_0 -> h1_1
+	h0_0 -> h1_2
+	h0_0 -> h1_3
+	h0_0 -> h1_4
+	h0_1 -> h1_0
+	h0_1 -> h1_1
+	h0_1 -> h1_2
+	h0_1 -> h1_3
+	h0_1 -> h1_4
+	h0_2 -> h1_0
+	h0_2 -> h1_1
+	h0_2 -> h1_2
+	h0_2 -> h1_3
+	h0_2 -> h1_4
+	h0_3 -> h1_0
+	h0_3 -> h1_1
+	h0_3 -> h1_2
+	h0_3 -> h1_3
+	h0_3 -> h1_4
+	h0_4 -> h1_0
+	h0_4 -> h1_1
+	h0_4 -> h1_2
+	h0_4 -> h1_3
+	h0_4 -> h1_4
+	h0_5 -> h1_0
+	h0_5 -> h1_1
+	h0_5 -> h1_2
+	h0_5 -> h1_3
+	h0_5 -> h1_4
+	h2_0 [label=h2_0 color=green shape=circle]
+	h2_1 [label=h2_1 color=green shape=circle]
+	h2_2 [label=h2_2 color=green shape=circle]
+	h2_3 [label=h2_3 color=green shape=circle]
+	h1_0 -> h2_0
+	h1_0 -> h2_1
+	h1_0 -> h2_2
+	h1_0 -> h2_3
+	h1_1 -> h2_0
+	h1_1 -> h2_1
+	h1_1 -> h2_2
+	h1_1 -> h2_3
+	h1_2 -> h2_0
+	h1_2 -> h2_1
+	h1_2 -> h2_2
+	h1_2 -> h2_3
+	h1_3 -> h2_0
+	h1_3 -> h2_1
+	h1_3 -> h2_2
+	h1_3 -> h2_3
+	h1_4 -> h2_0
+	h1_4 -> h2_1
+	h1_4 -> h2_2
+	h1_4 -> h2_3
+	h3_0 [label=h3_0 color=green shape=circle]
+	h3_1 [label=h3_1 color=green shape=circle]
+	h3_2 [label=h3_2 color=green shape=circle]
+	h3_3 [label=h3_3 color=green shape=circle]
+	h3_4 [label=h3_4 color=green shape=circle]
+	h2_0 -> h3_0
+	h2_0 -> h3_1
+	h2_0 -> h3_2
+	h2_0 -> h3_3
+	h2_0 -> h3_4
+	h2_1 -> h3_0
+	h2_1 -> h3_1
+	h2_1 -> h3_2
+	h2_1 -> h3_3
+	h2_1 -> h3_4
+	h2_2 -> h3_0
+	h2_2 -> h3_1
+	h2_2 -> h3_2
+	h2_2 -> h3_3
+	h2_2 -> h3_4
+	h2_3 -> h3_0
+	h2_3 -> h3_1
+	h2_3 -> h3_2
+	h2_3 -> h3_3
+	h2_3 -> h3_4
+	h4_0 [label=h4_0 color=green shape=circle]
+	h4_1 [label=h4_1 color=green shape=circle]
+	h4_2 [label=h4_2 color=green shape=circle]
+	h4_3 [label=h4_3 color=green shape=circle]
+	h4_4 [label=h4_4 color=green shape=circle]
+	h4_5 [label=h4_5 color=green shape=circle]
+	h3_0 -> h4_0
+	h3_0 -> h4_1
+	h3_0 -> h4_2
+	h3_0 -> h4_3
+	h3_0 -> h4_4
+	h3_0 -> h4_5
+	h3_1 -> h4_0
+	h3_1 -> h4_1
+	h3_1 -> h4_2
+	h3_1 -> h4_3
+	h3_1 -> h4_4
+	h3_1 -> h4_5
+	h3_2 -> h4_0
+	h3_2 -> h4_1
+	h3_2 -> h4_2
+	h3_2 -> h4_3
+	h3_2 -> h4_4
+	h3_2 -> h4_5
+	h3_3 -> h4_0
+	h3_3 -> h4_1
+	h3_3 -> h4_2
+	h3_3 -> h4_3
+	h3_3 -> h4_4
+	h3_3 -> h4_5
+	h3_4 -> h4_0
+	h3_4 -> h4_1
+	h3_4 -> h4_2
+	h3_4 -> h4_3
+	h3_4 -> h4_4
+	h3_4 -> h4_5
+	h5_0 [label=h5_0 color=green shape=circle]
+	h5_1 [label=h5_1 color=green shape=circle]
+	h5_2 [label=h5_2 color=green shape=circle]
+	h4_0 -> h5_0
+	h4_0 -> h5_1
+	h4_0 -> h5_2
+	h4_1 -> h5_0
+	h4_1 -> h5_1
+	h4_1 -> h5_2
+	h4_2 -> h5_0
+	h4_2 -> h5_1
+	h4_2 -> h5_2
+	h4_3 -> h5_0
+	h4_3 -> h5_1
+	h4_3 -> h5_2
+	h4_4 -> h5_0
+	h4_4 -> h5_1
+	h4_4 -> h5_2
+	h4_5 -> h5_0
+	h4_5 -> h5_1
+	h4_5 -> h5_2
+	output [label=Output color=red shape=circle]
+	h5_0 -> output
+	h5_1 -> output
+	h5_2 -> output
+}
