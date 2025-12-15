@@ -1,283 +1,115 @@
+# 📅 Week - 3 : Advanced Neural Networks & PyTorch Fundamentals
+
+This week focused on building **strong theoretical foundations** of neural networks and gradually transitioning into **practical implementation using PyTorch**. Topics included forward propagation, backpropagation, autograd, training pipelines, and hands-on ANN modeling.
 
 ---
 
-# 🧠 PyTorch ANN Practical Task – Full Project
+## 🧠 Learning Objectives
 
-### **Forward + Backward Propagation | Student Performance Prediction**
-
----
-
-## **🎯 Objective**
-
-Build a simple **Artificial Neural Network (ANN)** using **PyTorch** to predict **FinalGrade** from selected student features.
-You will clearly understand:
-
-* Forward Propagation
-* Loss Calculation
-* Backward Propagation (manual gradient intuition)
-* Weight Updates
-* ANN training workflow
+* Understand **advanced concepts of Artificial Neural Networks (ANN)**
+* Learn **mathematical intuition** behind forward & backward propagation
+* Get familiar with **PyTorch tensors, autograd, and nn modules**
+* Build a **complete neural network training pipeline**
+* Start a real-world **ANN project (Breast Cancer Detection)**
 
 ---
 
-# 1️⃣ Dataset Selection
+## 📆 Daily Progress Log
 
-We will use your uploaded dataset **merged_dataset.csv** which includes:
+### 🔹 Day 1
 
-* StudyHours
-* Attendance
-* Motivation
-* Extracurricular
-* Learning Style
-* Stress Level
-* ExamScore
-* FinalGrade (Target)
+**Topics Covered:**
 
-### **Your Task**
+* Advanced Neural Networks (ANN) – Theory
+* Forward Propagation – In-depth Mathematics (Basic)
+* Backpropagation – Gradient Calculation & Error Correction (Basic Maths)
+* Introduction to PyTorch & Deep Learning
+* Tensors in PyTorch
+* Reading Official PyTorch Documentation
 
-✔ Select **3–5 input features** you want to use for prediction.
-✔ Target variable = **FinalGrade**.
-
-> Example:
-> Input features → `StudyHours, Attendance, Motivation, ExamScore`
+**Time Spent:** 8 Hours
+**Status:** ✅ Completed
 
 ---
 
-# 2️⃣ Network Architecture Design
+### 🔹 Day 2 
 
-Design a **simple feed-forward neural network**:
+**Topics Covered:**
 
-### **Architecture**
+* Autograd – In-depth Mathematical Understanding
+* Autograd – Practical Implications (Code)
+* Neural Network Training Pipeline – Theory
+* Creating Neural Network using Training Pipeline (Code)
+* PyTorch Documentation with Tasks
 
-* **Input Layer:** Number of neurons = number of selected features
-* **Hidden Layer:** 3–5 neurons
-* **Activation:** ReLU
-* **Output Layer:** 1 neuron
-* **Activation:** Linear (Regression)
-
-### **Your Task**
-
-* Decide **how many hidden neurons** to use
-* Draw a simple diagram:
-
-```
-Input features → Hidden Layer (ReLU) → Output Layer (FinalGrade)
-```
+**Time Spent:** 8 Hours
+**Status:** ✅ Completed
 
 ---
 
-# 3️⃣ Forward Propagation
+### 🔹 Day 3 
 
-For each layer:
+**Topics Covered:**
 
-## **Step 1 — Weighted Sum**
+* `torch.nn` Module – Theory
+* `torch.nn` Module – Practical Implementation
+* Multi-Layer Neural Networks – Practical Implementation
+* Forward Propagation – Practical Implementation
 
-For every neuron:
-
-[
-Z = W \cdot X + b
-]
-
-* (W) = weights
-* (X) = input features
-* (b) = bias
+**Time Spent:** 7 Hours
+**Free Time:** 1 Hour
+**Status:** ✅ Completed
 
 ---
 
-## **Step 2 — Activation Function**
+### 🔹 Day 4 
 
-Hidden layer uses **ReLU**:
+**Topics Covered:**
 
-[
-A = \text{ReLU}(Z) = \max(0, Z)
-]
+* Activation Functions using PyTorch
+* Loss Functions using PyTorch
+* Breast Cancer Detection – ANN Model Creation
 
-Output layer uses **linear activation**:
-
-[
-\hat{y} = Z_{output}
-]
+**Time Spent:** 3 Hours
+**Free Time:** 5 Hours
+**Status:** ⏳ Partially Completed (Project Pending)
 
 ---
 
-## **Your Task**
+## 🧪 Practical Skills Gained
 
-Take **one row from the dataset**, manually compute:
-
-1. (Z) for each hidden neuron
-2. Apply ReLU
-3. Compute output neuron value
-4. Record predicted value (\hat{y})
-
----
-
-# 4️⃣ Loss Calculation
-
-We calculate **regression error** using **Mean Squared Error (MSE)**:
-
-[
-L = \frac{1}{n} \sum (y - \hat{y})^{2}
-]
-
-Where:
-
-* (y) = actual FinalGrade
-* (\hat{y}) = predicted FinalGrade
-
-### **Your Task**
-
-Compute MSE for **one training example** manually.
+* Manual implementation of **forward & backward propagation**
+* Using **PyTorch Autograd** for automatic differentiation
+* Building **custom neural networks** using `nn.Module`
+* Understanding **activation & loss functions** in real scenarios
+* Designing a **complete ANN training pipeline**
 
 ---
 
-# 5️⃣ Backward Propagation
+## 📌 Ongoing Task
 
-(How ANN learns by correcting errors)
+* 🚧 **Breast Cancer Detection using ANN**
 
----
-
-## **Step 1 — Gradient at Output Layer**
-
-[
-\frac{\partial L}{\partial \hat{y}} = -2(y - \hat{y})
-]
+  * Dataset preprocessing
+  * Model architecture finalization
+  * Training & evaluation
 
 ---
 
-## **Step 2 — Gradient for Output Layer Weights**
+## 📚 Key Tools & Technologies
 
-[
-\frac{\partial L}{\partial W_{output}} = A_{hidden} \cdot \frac{\partial L}{\partial \hat{y}}
-]
-
-Where:
-
-* (A_{hidden}) = outputs of hidden layer neurons
+* Python
+* PyTorch
+* Neural Networks (ANN)
+* Mathematical Foundations of Deep Learning
 
 ---
 
-## **Step 3 — Backprop to Hidden Layer**
+## ✅ Weekly Summary
 
-Hidden layer error:
-
-[
-\delta_{hidden} = (W_{output})^T \cdot \delta_{output} ;; \odot ;; f'(Z_{hidden})
-]
-
-Since ReLU:
-
-[
-f'(Z) =
-\begin{cases}
-1 & \text{if } Z > 0 \
-0 & \text{otherwise}
-\end{cases}
-]
+Week 3 strengthened my **core deep learning foundations**, especially the **math behind neural networks** and **practical PyTorch usage**. This week served as a bridge between **theory and real-world model building**, preparing me for more complex architectures ahead.
 
 ---
 
-## **Step 4 — Gradients for Hidden Weights**
+🔗 *Repository maintained with weekly progress updates as part of the AI/ML Internship.*
 
-[
-\frac{\partial L}{\partial W_{hidden}} = X \cdot \delta_{hidden}
-]
-
----
-
-# 6️⃣ Updating Weights (Gradient Descent)
-
-[
-W_{new} = W_{old} - \eta \cdot \frac{\partial L}{\partial W}
-]
-
-[
-b_{new} = b_{old} - \eta \cdot \frac{\partial L}{\partial b}
-]
-
-Where:
-
-* (\eta) = learning rate (e.g., 0.01)
-
-### **Your Task**
-
-Using the gradients from Step 5:
-
-* Update hidden layer weights
-* Update output layer weights
-* Update biases
-
----
-
-# 7️⃣ Training Loop (Iteration)
-
-During training:
-
-1. Forward pass
-2. Compute loss
-3. Backward pass (gradients)
-4. Update all weights and biases
-5. Repeat for **multiple epochs**
-
-### **Your Task**
-
-* Train for **20–50 epochs**
-* Record loss every 5 epochs
-* Write observations:
-
-  * Did the loss decrease?
-  * Did predictions improve?
-
----
-
-# 8️⃣ Result & Analysis
-
-After training:
-
-### **Your Task**
-
-#### ✔ Final Predictions
-
-Compare:
-
-| Actual Value (FinalGrade) | Predicted Value |
-| ------------------------- | --------------- |
-
-#### ✔ Loss Curve (optional)
-
-Plot / Describe:
-
-```
-Epoch vs Loss
-```
-
-#### ✔ Final Conclusion
-
-Explain in your own words:
-
-* How forward propagation produced predictions
-* How backward propagation corrected weights
-* How the ANN learned from data
-
----
-
-# 9️⃣ Final Deliverables (Submit)
-
-You must submit:
-
-### 🔹 1. ANN Architecture Diagram
-
-(input → hidden → output)
-
-### 🔹 2. Forward Propagation (manual example)
-
-### 🔹 3. Backpropagation (manual gradient steps)
-
-### 🔹 4. ANN Training Description
-
-(PyTorch training loop — no code required)
-
-### 🔹 5. Loss Trend
-
-### 🔹 6. Final Predictions vs Actual
-
----
