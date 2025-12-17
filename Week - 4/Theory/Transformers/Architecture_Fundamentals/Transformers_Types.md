@@ -53,14 +53,17 @@ The original Transformer architecture (encoder–decoder) is built from the foll
 
 ## Key Papers (Must-Reads)
 
-| Paper | Year | Contribution |
-|------|------|--------------|
-| Attention Is All You Need | 2017 | Introduced the Transformer architecture |
-| BERT | 2018 | Encoder-only, bidirectional pretraining |
-| GPT-3 | 2020 | Scaling decoder-only language models |
-| ViT | 2021 | Transformers for vision |
-| T5 | 2019 | Unified text-to-text framework |
-| Switch Transformer | 2021 | Mixture of Experts scaling |
+To understand the evolution of Transformers, the following papers are foundational:
+
+| Paper Title | Year | Significance |
+| --- | --- | --- |
+| [Attention Is All You Need](https://arxiv.org/abs/1706.03762) | 2017 | Introduced the original Transformer architecture. |
+| [BERT: Pre-training of Deep Bidirectional Transformers](https://arxiv.org/abs/1810.04805) | 2018 | Popularized Encoder-only models and Masked Language Modeling. |
+| [Language Models are Few-Shot Learners (GPT-3)](https://arxiv.org/abs/2005.14165) | 2020 | Demonstrated the power of scaling Decoder-only models. |
+| [An Image is Worth 16x16 Words (ViT)](https://arxiv.org/abs/2010.11929) | 2021 | Applied Transformer architecture successfully to Computer Vision. |
+| [Exploring the Limits of Transfer Learning (T5)](https://arxiv.org/abs/1910.10683) | 2019 | Unified NLP tasks into a text-to-text format using Encoder-Decoder. |
+| [Switch Transformers (MoE)](https://arxiv.org/abs/2101.03961) | 2021 | Scaled models to trillions of parameters using Mixture of Experts. |
+
 
 ---
 
@@ -280,13 +283,11 @@ II. Output Projection
 - Neuro-Symbolic Transformers
 
 ---
-
 ## Learning Resources
 
-- The Illustrated Transformer – Jay Alammar  
-- Hugging Face NLP Course  
-- Stanford CS224N  
-
+* **Visualizations:** [The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/) by Jay Alammar.
+* **Code:** [Hugging Face Course](https://huggingface.co/learn/nlp-course/) for practical implementation.
+* **Mathematical Depth:** [Stanford CS224N: NLP with Deep Learning](http://web.stanford.edu/class/cs224n/).
 ---
 
 ## License
