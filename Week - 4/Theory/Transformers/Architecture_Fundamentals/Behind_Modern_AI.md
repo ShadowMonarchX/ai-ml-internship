@@ -125,7 +125,3 @@ This ensures that:
 * Probabilities are in [0, 1]
 * Total probability sums to 1
 * Enables probabilistic selection of the next token
-
----
-
-This format now integrates clean, GitHub-ready math equations for attention, positional encoding, and softmax output.
