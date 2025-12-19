@@ -1,6 +1,4 @@
 # 📘 Week 4 – Deep Learning & Transformer Architectures  
-**AI/ML Internship – Final Work Summary**  
-👨‍💻 **Intern:** Jenish Shekhada  
 
 ---
 
