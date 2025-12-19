@@ -1,15 +1,18 @@
-# Transformer Encoder and Decoder Explained (With Full Theory & Mathematics)
+# Transformer Encoder and Decoder Explained  
+*(With Full Theory & Mathematical Foundations)*
 
-Transformers have revolutionized Natural Language Processing (NLP) by replacing recurrence with attention mechanisms.  
-At the core of the Transformer architecture are two fundamental components:
+Transformers revolutionized Natural Language Processing (NLP) by replacing recurrence with **attention mechanisms**.  
+At the heart of the Transformer architecture are two core components:
 
-- **Encoder** – responsible for understanding input data  
-- **Decoder** – responsible for generating output data  
+- **Encoder** — responsible for understanding input data  
+- **Decoder** — responsible for generating output data  
 
 This README provides a **complete theoretical and mathematical explanation** of:
-- Encoder
-- Decoder
-- Encoder vs Decoder architectures
+- Transformer fundamentals
+- Encoder architecture
+- Decoder architecture
+- Encoder vs Decoder comparison
+- Real-world applications
 
 No unrelated topics are included.
 
@@ -36,7 +39,8 @@ A Transformer can be built using:
 
 - Sequence length: `n`
 - Model dimension: `d_model`
-- Input tokens: `x1, x2, ..., xn`
+- Input tokens: `x₁, x₂, ..., xₙ`
+- Output tokens: `y₁, y₂, ..., yₜ`
 - Embedding matrix: `E`
 - Positional encoding: `P`
 - Query, Key, Value dimensions: `d_k`, `d_v`
@@ -45,13 +49,15 @@ A Transformer can be built using:
 
 ## Encoder: Understanding the Input
 
-The **Encoder** converts an input sequence into **context-aware vector representations** using **bi-directional self-attention**.
+The **Encoder** processes the input sequence and generates **context-aware vector representations**.
 
-Encoders see **all tokens at once**, allowing full contextual understanding.
+It focuses purely on **understanding**, not generation.
+
+Encoders are **bi-directional**, meaning each token can attend to **all other tokens** in the sequence.
 
 ---
 
-## Encoder Workflow (Theory + Math)
+## Encoder Workflow (Theory + Mathematics)
 
 ### 1. Input Tokenization
 
@@ -71,16 +77,15 @@ Each token is mapped to a dense vector:
 
 ```
 
-X = [x1, x2, ..., xn]
-xi ∈ R^(d_model)
+X = [x₁, x₂, ..., xₙ]
+xᵢ ∈ ℝ^(d_model)
 
 ```
 
 Using an embedding matrix:
-
 ```
 
-xi = E(token_i)
+xᵢ = E(tokenᵢ)
 
 ```
 
@@ -88,46 +93,34 @@ xi = E(token_i)
 
 ### 3. Positional Encoding
 
-Transformers have no inherent notion of order, so positional encodings are added:
+Transformers lack inherent order awareness, so positional encoding is added:
 
 ```
 
-Z0 = X + P
+Z₀ = X + P
 
 ```
 
-**Sinusoidal Positional Encoding:**
-
+**Sinusoidal Positional Encoding**
 ```
 
-PE(pos, 2i)   = sin( pos / 10000^(2i / d_model) )
-PE(pos, 2i+1) = cos( pos / 10000^(2i / d_model) )
+PE(pos, 2i)   = sin(pos / 10000^(2i / d_model))
+PE(pos, 2i+1) = cos(pos / 10000^(2i / d_model))
 
 ```
-
-Why this works:
-- Encodes absolute & relative positions
-- Allows extrapolation to longer sequences
-- No extra learned parameters
 
 ---
 
-### 4. Multi-Head Self-Attention (Core Mechanism)
+### 4. Self-Attention Mechanism
 
-For each token representation `Z`:
-
+Linear projections:
 ```
 
-Q = Z * W_Q
-K = Z * W_K
-V = Z * W_V
+Q = Z × W_Q
+K = Z × W_K
+V = Z × W_V
 
 ```
-
-Where:
-- `Q` = Queries
-- `K` = Keys
-- `V` = Values
 
 ---
 
@@ -135,71 +128,40 @@ Where:
 
 ```
 
-Attention(Q, K, V) = softmax( (Q × Kᵀ) / sqrt(d_k) ) × V
+Attention(Q, K, V) = Softmax( (Q × Kᵀ) / sqrt(d_k) ) × V
 
 ```
-
-Key points:
-- `Q × Kᵀ` computes similarity
-- `sqrt(d_k)` prevents large gradients
-- `softmax` converts scores into probabilities
 
 ---
 
 ### 5. Multi-Head Attention
 
-Instead of a single attention head:
-
 ```
 
-head_i = Attention(Q_i, K_i, V_i)
+headᵢ = Attention(Qᵢ, Kᵢ, Vᵢ)
+MultiHead(Q, K, V) = Concat(head₁, ..., headₕ) × W_O
 
 ```
-
-Combine multiple heads:
-
-```
-
-MultiHead(Q, K, V) = Concat(head_1, head_2, ..., head_h) × W_O
-
-```
-
-Why multi-head?
-- Captures multiple relationships
-- Learns syntax, semantics, and structure simultaneously
 
 ---
 
 ### 6. Add & Layer Normalization
 
-Residual connection + normalization:
-
 ```
 
-Z1 = LayerNorm( Z0 + MultiHead(Z0) )
+Z₁ = LayerNorm(Z₀ + MultiHead(Z₀))
 
 ```
-
-Purpose:
-- Preserve original information
-- Improve gradient flow
-- Stabilize training
 
 ---
 
 ### 7. Feed-Forward Neural Network (FFN)
 
-Applied independently to each token:
-
 ```
 
-FFN(x) = max(0, x × W1 + b1) × W2 + b2
+FFN(x) = max(0, x × W₁ + b₁) × W₂ + b₂
 
 ```
-
-- First layer expands dimension
-- ReLU adds non-linearity
-- Second layer projects back to `d_model`
 
 ---
 
@@ -207,29 +169,9 @@ FFN(x) = max(0, x × W1 + b1) × W2 + b2
 
 ```
 
-Z_out = LayerNorm( Z1 + FFN(Z1) )
+Z_out = LayerNorm(Z₁ + FFN(Z₁))
 
 ```
-
-This produces **contextual embeddings** for each token.
-
----
-
-## Encoder Output Usage
-
-- Used directly for prediction tasks
-- Or passed to the decoder
-
----
-
-## Encoder-Only Models
-
-Used for **understanding tasks**:
-
-- BERT
-- RoBERTa
-- DistilBERT
-- Vision Transformer (ViT)
 
 ---
 
@@ -237,53 +179,33 @@ Used for **understanding tasks**:
 
 The **Decoder** generates output sequences **autoregressively**, one token at a time.
 
-Each token depends **only on past tokens**.
-
 ---
 
-## Decoder Workflow (Theory + Math)
+## Decoder Workflow (Theory + Mathematics)
 
 ### 1. Input Embedding + Positional Encoding
 
 ```
 
-Y0 = E(y_<t) + P
+Y₀ = E(y_<t) + P
 
 ```
-
-Where:
-- `y_<t` = previously generated tokens
 
 ---
 
-### 2. Masked Multi-Head Self-Attention
-
-Causal mask definition:
+### 2. Masked Self-Attention
 
 ```
 
-Mask[i][j] = 0       if j ≤ i
-Mask[i][j] = -∞      if j > i
+Mask[i][j] = 0    if j ≤ i
+Mask[i][j] = -∞   if j > i
+Attention = Softmax( (Q × Kᵀ) / sqrt(d_k) + Mask ) × V
 
 ```
-
-Masked attention formula:
-
-```
-
-Attention = softmax( (Q × Kᵀ) / sqrt(d_k) + Mask ) × V
-
-```
-
-Why masking?
-- Prevents seeing future tokens
-- Ensures left-to-right generation
 
 ---
 
 ### 3. Encoder–Decoder Attention
-
-Queries from decoder, keys & values from encoder:
 
 ```
 
@@ -291,19 +213,13 @@ Attention(Q_dec, K_enc, V_enc)
 
 ```
 
-Purpose:
-- Align input sequence with output sequence
-- Critical for translation & summarization
-
 ---
 
 ### 4. Feed-Forward Network
 
-Same FFN as encoder:
-
 ```
 
-FFN(x) = max(0, x × W1 + b1) × W2 + b2
+FFN(x) = max(0, x × W₁ + b₁) × W₂ + b₂
 
 ```
 
@@ -311,39 +227,12 @@ FFN(x) = max(0, x × W1 + b1) × W2 + b2
 
 ### 5. Output Projection + Softmax
 
-Logits computation:
-
 ```
 
 logits = Z × W_vocab
+P(token_t) = Softmax(logits)
 
 ```
-
-Probability distribution:
-
-```
-
-P(token_t) = softmax(logits)
-
-```
-
----
-
-## Decoder Output
-
-- Generates one token at a time
-- Stops at `<EOS>` or max length
-
----
-
-## Decoder-Only Models
-
-Used for **generation tasks**:
-
-- GPT
-- GPT-2
-- GPT-3
-- GPT-4
 
 ---
 
@@ -354,7 +243,7 @@ Used for **generation tasks**:
 | Attention | Full self-attention | Masked self-attention |
 | Direction | Bi-directional | Uni-directional |
 | Uses Mask | No | Yes |
-| Output Type | Embeddings | Probabilities |
+| Output | Embeddings | Probabilities |
 | Objective | Understanding | Generation |
 | Training | Parallel | Autoregressive |
 
@@ -362,11 +251,9 @@ Used for **generation tasks**:
 
 ## Encoder–Decoder Together (Seq2Seq)
 
-Overall flow:
-
 ```
 
-Input X → Encoder → Hidden States H → Decoder → Output Y
+Input → Encoder → Hidden States → Decoder → Output
 
 ```
 
@@ -375,34 +262,182 @@ Used in:
 - Summarization
 - Question answering
 
-Models:
-- Transformer
-- T5
-- BART
-
 ---
 
 ## Real-World Analogy
 
 **Live Translation Booth**
 
-- Encoder → Listener fully understanding the sentence
-- Decoder → Speaker generating translation word-by-word
+- Encoder → Listener fully understands the sentence  
+- Decoder → Speaker generates translation word-by-word
+
+---
+
+## Applications
+
+### Encoder-Only Models
+
+- **BERT**  
+  Uses only the encoder for contextual representations.
+
+Use cases:
+- Text classification
+- Question answering
+
+### Decoder-Only Models
+
+- **GPT**  
+  Uses only the decoder for autoregressive generation.
+
+Use cases:
+- Text generation
+- Chatbots
+
+### Encoder–Decoder Models
+
+- **Transformer (Original)**
+- **T5 (Text-to-Text Transfer Transformer)**
+
+Use cases:
+- Translation
+- Summarization
+- Sequence-to-sequence tasks
 
 ---
 
 ## Key Concepts to Remember
 
 - Self-attention replaces recurrence
-- Scaling factor stabilizes gradients
+- Positional encoding retains order
 - Masking enforces causality
 - FFN adds non-linearity
-- Residual connections preserve information
-- Softmax produces probabilities
+- Residuals improve training
+- Softmax yields probabilities
 
 ---
 
-## Conclusion
+## References & Resources
 
-The Encoder and Decoder form the **mathematical and conceptual foundation** of Transformer models.  
-Understanding their **functions, equations, and roles** is essential for mastering modern NLP and generative AI.
+### 🔗 Articles & Tutorials
+
+- **Encoder vs Decoder in Transformers** – Hassaan Idrees  
+  https://medium.com/@hassaanidrees7/encoder-vs-decoder-in-transformers-unpacking-the-differences-9e6ddb0ff3c5
+
+- **Attention Is All You Need** (original paper)  
+  https://arxiv.org/abs/1706.03762
+
+---
+
+## 📊 Transformer Architecture Diagrams (Mermaid)
+
+GitHub supports **Mermaid diagrams**, which allow you to visualize Transformer components directly inside `README.md`.
+
+---
+
+## 🔹 Encoder Architecture Diagram
+
+```mermaid
+flowchart TB
+    Y[Previous Output Tokens] --> E2[Token Embedding]
+    E2 --> P2[Positional Encoding]
+    P2 --> ZD0[Decoder Input]
+
+    ZD0 --> MSA[Masked Self Attention]
+    MSA --> ADD1[Add and LayerNorm]
+
+    ADD1 --> EDA[Encoder Decoder Attention]
+    EDA --> ADD2[Add and LayerNorm]
+
+    ADD2 --> FFN2[Feed Forward Network]
+    FFN2 --> ADD3[Add and LayerNorm]
+
+    ADD3 --> OUT2[Output Probabilities Softmax]
+
+```
+
+### Explanation
+
+* Encoder uses **bi-directional self-attention**
+* Every token attends to **all other tokens**
+* Output is a **context-aware embedding per token**
+
+---
+
+## 🔹 Decoder Architecture Diagram
+
+```mermaid
+flowchart TB
+    Y[Previous Output Tokens] --> E2[Token Embedding]
+    E2 --> P2[Positional Encoding]
+    P2 --> ZD0[Decoder Input]
+
+    ZD0 --> MSA[Masked Self Attention]
+    MSA --> ADD1[Add and LayerNorm]
+
+    ADD1 --> EDA[Encoder Decoder Attention]
+    EDA --> ADD2[Add and LayerNorm]
+
+    ADD2 --> FFN2[Feed Forward Network]
+    FFN2 --> ADD3[Add and LayerNorm]
+
+    ADD3 --> OUT2[Output Probabilities Softmax]
+
+```
+
+### Explanation
+
+* Masked attention prevents **future token access**
+* Encoder–Decoder attention injects **input context**
+* Output is generated **token by token**
+
+---
+
+## 🔹 Full Transformer (Encoder–Decoder) Flow
+
+```mermaid
+flowchart LR
+    A[Input Tokens] --> ENC[Encoder Stack]
+    ENC --> H[Hidden States]
+
+    H --> DEC[Decoder Stack]
+    B[Shifted Output Tokens] --> DEC
+
+    DEC --> SOFTMAX[Softmax]
+    SOFTMAX --> OUT[Generated Output Tokens]
+```
+
+### Explanation
+
+* Encoder processes the full input sequence
+* Decoder generates output **autoregressively**
+* Used in translation, summarization, seq2seq tasks
+
+---
+
+## 🔹 Attention Mechanism (Inside a Layer)
+
+```mermaid
+flowchart TB
+    Z[Input Embeddings] --> Q[Queries]
+    Z --> K[Keys]
+    Z --> V[Values]
+
+    Q --> DOT[Q × Kᵀ]
+    K --> DOT
+    DOT --> SCALE[Divide by √d_k]
+    SCALE --> SM[Softmax]
+    SM --> WEIGHT[Attention Weights]
+    WEIGHT --> VOUT[Weighted Sum with V]
+```
+
+---
+
+## 🧠 Diagram Summary
+
+| Diagram           | Shows                            |
+| ----------------- | -------------------------------- |
+| Encoder Diagram   | Understanding & context building |
+| Decoder Diagram   | Autoregressive generation        |
+| Full Transformer  | End-to-end seq2seq flow          |
+| Attention Diagram | Core mathematical operation      |
+
