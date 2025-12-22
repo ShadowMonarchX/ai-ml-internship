@@ -129,3 +129,6 @@ flowchart LR
 ## 10. Conclusion
 
 The Seq2Seq architecture establishes a rigorous mathematical and architectural framework for sequence-to-sequence modeling. Through encoder–decoder decomposition, autoregressive probability modeling, and attention-based context computation, Seq2Seq models lay the theoretical groundwork for modern sequence architectures. A deep understanding of these principles is a prerequisite for fully comprehending Transformer-based models.
+
+
+
