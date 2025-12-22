@@ -1,4 +1,4 @@
-# Self-Attention vs Multi-Head Self-Attention in Transformers
+# Self-Attention vs Multi-Head
 
 ---
 

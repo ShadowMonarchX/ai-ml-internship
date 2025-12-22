@@ -1,5 +1,4 @@
-# Feed-Forward Network (FFN) in Transformers — Theory, Mathematics, and Visualization
-
+# Feed-Forward Network (FFN) in Transformers 
 ---
 
 ## 1. Introduction

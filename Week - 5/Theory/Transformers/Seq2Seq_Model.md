@@ -1,4 +1,4 @@
-# Understanding the Seq2Seq Model — What You Should Know Before Understanding Transformers
+# Understanding the Seq2Seq Model 
 
 ---
 
