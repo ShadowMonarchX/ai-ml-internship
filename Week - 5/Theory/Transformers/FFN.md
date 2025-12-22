@@ -1,242 +1,104 @@
 # Feed-Forward Network (FFN) in Transformers 
+
+[![Architecture](https://img.shields.io/badge/Component-Transformer-orange.svg)](#)
+[![Math](https://img.shields.io/badge/Focus-Theoretical-blue.svg)](#)
+
+A deep dive into the position-wise non-linear transformations that provide Transformers with their representational power.
+
 ---
 
 ## 1. Introduction
 
-The Transformer architecture is composed of stacked layers that jointly model contextual relationships and transform representations in high-dimensional vector spaces. Each Transformer block consists of multiple sub-layers, most notably **attention mechanisms** and **feed-forward networks (FFNs)**.
-
-While attention mechanisms enable information exchange across tokens in a sequence, they are **not sufficient on their own** to produce expressive representations. The **Feed-Forward Network (FFN)** acts as a complementary component that performs **non-linear feature transformation** at the level of individual tokens.
-
-The goal of this document is to present a **purely theoretical, mathematical, and architectural explanation** of the FFN in Transformers, including its role, formulation, intuition, and visualization.
+The Transformer architecture is composed of stacked layers that jointly model contextual relationships and transform representations. While **Attention Mechanisms** enable information exchange *across* tokens, the **Feed-Forward Network (FFN)** acts as a complementary component that performs non-linear feature transformation *within* individual tokens.
 
 ---
 
-## 2. Position of FFN in the Transformer Architecture (Theory)
+## 2. Position in the Transformer Block
 
-Within a standard Transformer encoder or decoder block, the FFN appears as a dedicated sub-layer following an attention mechanism.
+Within a standard Transformer encoder or decoder block, the FFN is a dedicated sub-layer that follows the attention mechanism.
 
-At a high level, the block structure is:
 
-1. Attention sub-layer
-2. Residual connection + normalization
-3. **Feed-Forward Network sub-layer**
-4. Residual connection + normalization
 
-### Architectural Relationships
-
-* **Self-Attention:** mixes information *across tokens* in a sequence.
-* **FFN:** transforms information *within each token* independently.
-* **Residual Connections:** preserve the original representation and stabilize transformations.
-* **Layer Normalization:** ensures numerical stability and consistent scaling.
-
-### Token-wise vs Sequence-wise Processing
-
-* Attention operates **sequence-wise**, creating dependencies between tokens.
-* FFN operates **token-wise**, applying the same transformation to each token independently.
-
-Crucially, the FFN **does not mix positional information across tokens**. Each token passes through the FFN in isolation, using shared parameters.
+### Architectural Roles
+* **Self-Attention:** Mixes information **across tokens** in a sequence (Global).
+* **FFN:** Transforms information **within each token** independently (Local).
+* **Residual Connections:** Preserve original representations and stabilize gradients.
+* **Layer Normalization:** Ensures numerical stability and consistent scaling.
 
 ---
 
-## 3. What is the Feed-Forward Network in Transformers? (Conceptual Theory)
+## 3. Conceptual Theory
 
-The Feed-Forward Network in Transformers is a **position-wise fully connected neural network** applied identically to every token representation.
+The FFN is a **position-wise fully connected neural network**. 
 
-### Why “Position-wise”?
-
-* The same FFN is applied independently to each token position.
-* There is **no interaction between different positions** inside the FFN.
-
-### Why “Feed-Forward”?
-
-* Information flows strictly forward through linear and non-linear transformations.
-* There are no recurrent or cyclic dependencies.
-
-### Functional Role
-
-The FFN serves as a mechanism for:
-
-* **Feature transformation:** mapping representations into richer feature spaces.
-* **Non-linear representation learning:** enabling complex transformations beyond linear mixing.
-* **Refinement of token embeddings:** after contextual information has been injected by attention.
-
-In contrast to attention, which focuses on **relational modeling**, the FFN focuses on **representation transformation**.
+* **Position-wise:** The exact same FFN (sharing the same weights) is applied independently to every token in the sequence. There is no cross-talk between tokens in this stage.
+* **Functional Role:** It maps representations into a higher-dimensional space to perform complex feature refinement that simple linear attention cannot achieve.
 
 ---
 
-## 4. Mathematical Formulation of the FFN
+## 4. Mathematical Formulation
 
-Let the input to the FFN be a matrix:
+Let the input to the FFN be a matrix $X \in \mathbb{R}^{n \times d_{\text{model}}}$, where $n$ is sequence length and $d_{\text{model}}$ is the embedding dimension.
 
-$$
-X \in \mathbb{R}^{n \times d_{\text{model}}}
-$$
+### The FFN Equation
+The transformation is typically defined using two linear layers and a non-linear activation function ($\phi$):
 
-where:
+$$\text{FFN}(x) = \phi(xW_1 + b_1)W_2 + b_2$$
 
-* ( n ) is the sequence length
-* ( d_{\text{model}} ) is the model embedding dimension
+**Where:**
+* $W_1 \in \mathbb{R}^{d_{\text{model}} \times d_{\text{ff}}}$ (Expansion layer)
+* $W_2 \in \mathbb{R}^{d_{\text{ff}} \times d_{\text{model}}}$ (Compression layer)
+* $d_{\text{ff}}$ is usually significantly larger than $d_{\text{model}}$ (often $4 \times$ larger).
 
-### Standard FFN Equation
 
-The FFN is defined as:
-
-$$
-\text{FFN}(x) = \max(0, xW_1 + b_1)W_2 + b_2
-$$
-
-More generally, using an activation function ( \phi ):
-
-$$
-\text{FFN}(x) = \phi(xW_1 + b_1)W_2 + b_2
-$$
-
-where:
-
-* ( W_1 \in \mathbb{R}^{d_{\text{model}} \times d_{\text{ff}}} )
-* ( W_2 \in \mathbb{R}^{d_{\text{ff}} \times d_{\text{model}}} )
-* ( b_1 \in \mathbb{R}^{d_{\text{ff}}} )
-* ( b_2 \in \mathbb{R}^{d_{\text{model}}} )
-
-### Dimensional Transformations
-
-* **Expansion:** ( d_{\text{model}} \rightarrow d_{\text{ff}} )
-* **Compression:** ( d_{\text{ff}} \rightarrow d_{\text{model}} )
-
-### Token-wise Application
-
-For each token vector ( x_i \in \mathbb{R}^{d_{\text{model}}} ):
-
-$$
-y_i = \text{FFN}(x_i)
-$$
-
-This operation is identical for all tokens and does not depend on sequence length.
 
 ---
 
-## 5. Activation Functions in FFN (Theory + Math)
+## 5. Activation Functions
 
-### Role of Activation Functions
+Non-linearity allows the FFN to represent complex functions. Common choices include:
 
-Activation functions introduce **non-linearity**, allowing the FFN to represent functions that cannot be expressed through linear transformations alone.
-
-### Common Activations
-
-#### ReLU
-
-$$
-\text{ReLU}(z) = \max(0, z)
-$$
-
-* Introduces sparsity
-* Piecewise linear
-
-#### GELU
-
-$$
-\text{GELU}(z) = z \cdot \Phi(z)
-$$
-
-where ( \Phi(z) ) is the cumulative distribution function of a standard normal distribution.
-
-### Theoretical Motivation
-
-* Smooth non-linearities allow gradual changes in representation space.
-* Non-linear activation enables higher-order feature interactions.
-* The choice of activation affects the geometry of the transformed feature space.
+* **ReLU:** $\text{ReLU}(z) = \max(0, z)$
+* **GELU:** $\text{GELU}(z) = z \cdot \Phi(z)$ (Used in BERT, GPT-3, etc.)
 
 ---
 
-## 6. Visual Representation of FFN (GitHub-Compatible)
+## 6. Visual Workflow
 
 ```mermaid
 flowchart LR
-    X[Token Embedding<br/>d_model]
-    X --> W1[Linear Projection W₁<br/>d_model → d_ff]
-    W1 --> A[Activation Function φ]
-    A --> W2[Linear Projection W₂<br/>d_ff → d_model]
-    W2 --> Y[Output Embedding<br/>d_model]
+    X[Input Token<br/>d_model] --> W1[Linear Projection W₁<br/>Expansion: d_model → d_ff]
+    W1 --> A{Activation φ<br/>Non-linearity}
+    A --> W2[Linear Projection W₂<br/>Compression: d_ff → d_model]
+    W2 --> Y[Output Token<br/>d_model]
+    
+    style A fill:#f96,stroke:#333,stroke-width:2px
+
 ```
 
 ---
 
-## 7. FFN as a Non-Linear Feature Transformer (Deep Theory)
+## 7. Comparison: Attention vs. FFN
 
-From a functional perspective, the FFN acts as a **non-linear operator** applied to each token representation.
-
-Key theoretical properties:
-
-* Two-layer networks with non-linear activation can approximate a wide class of functions.
-* The FFN enables **local complexity**, complementing the **global dependency modeling** of attention.
-* Attention alone produces weighted averages, which are inherently linear operations.
-* The FFN introduces the capacity to reshape and warp representations in feature space.
-
-Thus, the FFN is essential for increasing the **expressive power** of Transformer layers.
+| Aspect | Attention | Feed-Forward Network |
+| --- | --- | --- |
+| **Purpose** | Relational modeling | Feature refinement |
+| **Operation Domain** | Across tokens (Horizontal) | Within each token (Vertical) |
+| **Dependency** | Inter-token | Intra-token (Independent) |
+| **Math Nature** | Weighted linear combinations | Non-linear mappings |
 
 ---
 
-## 8. Comparison: Attention vs FFN (Theoretical Perspective Only)
+## 8. Expansion-Compression Principle
 
-| Aspect              | Attention                    | Feed-Forward Network   |
-| ------------------- | ---------------------------- | ---------------------- |
-| Purpose             | Relation modeling            | Feature transformation |
-| Operation domain    | Across tokens                | Within each token      |
-| Dependency modeling | Inter-token                  | Intra-token            |
-| Mathematical nature | Weighted linear combinations | Non-linear mappings    |
+A single linear layer cannot increase complexity. The FFN uses a "bottleneck" style in reverse:
 
----
-
-## 9. Mathematical Intuition Behind FFN Design
-
-### Why Two Linear Layers?
-
-A single linear transformation cannot increase representational complexity. The two-layer structure allows:
-
-$$
-\mathbb{R}^{d_{\text{model}}}
-\rightarrow
-\mathbb{R}^{d_{\text{ff}}}
-\rightarrow
-\mathbb{R}^{d_{\text{model}}}
-$$
-
-### Expansion–Compression Principle
-
-* Expansion maps vectors into a higher-dimensional space.
-* Non-linearity reshapes the space.
-* Compression projects the result back into the original dimension.
-
-This design enables richer transformations while preserving architectural consistency.
+1. **Project Up:** Map to a high-dimensional space () to "unfold" features.
+2. **Activate:** Apply non-linearity to extract complex patterns.
+3. **Project Down:** Map back to  for the next Transformer layer.
 
 ---
 
-## 10. FFN Across Transformer Layers (Theory)
+## 9. Conclusion
 
-* Each Transformer layer contains its own FFN.
-* FFNs across layers **do not share parameters**.
-* Stacking FFNs increases model depth and compositional expressiveness.
-* Each layer refines representations produced by previous layers.
-
-Depth allows the composition of multiple non-linear transformations, increasing representational hierarchy.
-
----
-
-## 11. Key Properties of Transformer FFN
-
-* **Position-wise operation:** applied independently to each token.
-* **Parameter sharing:** same weights across all positions.
-* **Non-linearity introduction:** enables complex mappings.
-* **Dimensional expansion:** increases expressive capacity within layers.
-
----
-
-## 12. Intuition Summary
-
-The Feed-Forward Network refines token representations by applying structured non-linear transformations after contextual information has been integrated. It operates locally on each token while contributing globally to representational richness through depth and composition.
-
----
-
-## 13. Conclusion
-
-The Feed-Forward Network is a mathematically essential component of the Transformer architecture. By introducing non-linearity, dimensional expansion, and token-wise transformation, the FFN complements attention mechanisms and enables expressive, layered representation learning. Its architectural role is fundamental to the theoretical power of Transformers.
+The FFN is mathematically essential. By introducing non-linearity and dimensional expansion, it complements the relational focus of attention with the expressive power of deep neural networks. It is the "knowledge engine" where the model processes the context gathered by the attention layers.
