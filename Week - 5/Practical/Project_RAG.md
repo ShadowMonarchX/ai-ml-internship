@@ -2,8 +2,7 @@
 ### Retrieval-Augmented Generation (RAG) – End-to-End Implementation
 
 🔗 **Repository:**  
-https://github.com/ShadowMonarchX/dynamic-ai-customer-support/tree/Work_Barch
-
+https://github.com/ShadowMonarchX/dynamic-ai-customer-support/tree/Work_Barch_1
 ---
 
 ## 📌 Project Overview
