@@ -1,11 +1,3 @@
-# **Metadata – Context & Filtering Layer in Vector Databases**
-
-While vector embeddings capture semantic meaning, **metadata adds structure, context, and control** to retrieval. In real-world AI systems, vectors alone are often insufficient because enterprise, regulatory, and personalization constraints require **deterministic filtering**.
-
-Metadata provides the **control layer** that allows vector databases and RAG pipelines to enforce rules, apply filters, and deliver precise, compliant, and contextually relevant results.
-
----
-
 ## 4. Metadata (Context & Filtering Layer)
 
 Metadata represents **non-vector, descriptive information** associated with each vector. It complements semantic similarity by acting as a **filtering and selection mechanism**.
@@ -171,17 +163,3 @@ Metadata is the **control plane of vector databases**. It enables:
 * Precision, security, and compliance in RAG pipelines
 
 While embeddings determine **what is similar**, metadata determines **what is allowed or relevant**, making it essential for scalable, production-grade AI systems.
-
----
-
-## Writing Style & Audience
-
-This README is intended for:
-
-* Students learning vector databases and RAG
-* AI engineers designing production systems
-* Interview preparation and system design
-* Open-source contributors and researchers
-
-It is clear, structured, professional, and functions as a **mini textbook chapter** on metadata in vector databases.
-
