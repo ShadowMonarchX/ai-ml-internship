@@ -50,11 +50,8 @@ where:
 * *n* is the embedding dimension
 * Each dimension captures latent semantic features learned by the model
 
-Semantic similarity is often measured using **cosine similarity**:
+Semantic similarity is often measured using cosine similarity: $\cos(\theta) = \frac{A \cdot B}{||A|| \, ||B||}$
 
-[
-\cos(\theta) = \frac{A \cdot B}{||A|| , ||B||}
-]
 
 Intuitively, cosine similarity measures the **angle between vectors**, not their magnitude. Two vectors pointing in the same direction represent similar meaning, regardless of length. This makes cosine similarity robust for comparing semantic content.
 
